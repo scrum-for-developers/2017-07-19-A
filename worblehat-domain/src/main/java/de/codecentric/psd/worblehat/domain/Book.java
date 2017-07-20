@@ -20,6 +20,7 @@ public class Book implements Serializable {
 	private String edition;
 	private String isbn;
 	private int yearOfPublication;
+	private String description;
 
 	@OneToOne(mappedBy = "borrowedBook", orphanRemoval = true)
 	private Borrowing borrowing;
@@ -99,5 +100,13 @@ public class Book implements Serializable {
 
 	public void setBorrowing(Borrowing borrowing) {
 		this.borrowing = borrowing;
+	}
+	
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

@@ -43,7 +43,7 @@ public class StandardBookServiceTest {
 		List<Borrowing> result = Collections.singletonList(borrowing);
 		when(borrowingRepository.findBorrowingsByBorrower(BORROWER_EMAIL))
 		.thenReturn(result);
-		bookService.returnAllBooksByBorrower(BORROWER_EMAIL);
+		bookService.returnAllBooksByBorrower(BORROWER_EMAIL, null, null);
 		verify(borrowingRepository).delete(borrowing);
 	}
 

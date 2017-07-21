@@ -35,12 +35,12 @@ public class ReturnAllBooksController {
 	public String returnAllBooks(
 			@ModelAttribute("returnAllBookFormData") @Valid ReturnAllBooksFormData formData,
 			BindingResult result) {
-		if (result.hasErrors()) {
-			return "returnAllBooks";
-		} else {
-			bookService.returnAllBooksByBorrower(formData.getEmailAddress());
-			return "home";
-		}
-	}
+        if (result.hasErrors()) {
+            return "returnAllBooks";
+        } else {
+            bookService.returnAllBooksByBorrower(formData.getEmailAddress(), formData.getIsbn(), formData.getTitle());
+            return "home";
+        }
+    }
 
 }

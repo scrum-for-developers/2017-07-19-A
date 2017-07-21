@@ -7,7 +7,7 @@ import java.util.List;
  */
 public interface BookService {
 
-	void returnAllBooksByBorrower(String string);
+	void returnAllBooksByBorrower(String string, String isbn, String title);
 
 	void borrowBook(Book book, String borrower) throws BookAlreadyBorrowedException;
 

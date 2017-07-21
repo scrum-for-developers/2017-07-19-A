@@ -61,7 +61,7 @@ public class ReturnAllBooksControllerTest {
 
         String navigateTo = returnAllBooksController.returnAllBooks(returnAllBooksFormData, bindingResult);
 
-        verify(bookService).returnAllBooksByBorrower(borrower);
+        verify(bookService).returnAllBooksByBorrower(borrower, null, null);
         assertThat(navigateTo, is("home"));
     }
 }

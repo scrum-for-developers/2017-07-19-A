@@ -19,7 +19,7 @@ public class ISBNConstraintValidator implements ConstraintValidator<ISBN, String
 			if (ISBNValidator.getInstance().isValidISBN10(value)){
 				return true;
 			} 
-			return ISBNValidator.getInstance().isValidISBN13(value)   ;
+			return ISBNValidator.getInstance().isValidISBN13(value);
 		}
 		return true;
 	}

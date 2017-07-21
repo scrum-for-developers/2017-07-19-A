@@ -29,11 +29,33 @@ public class StandardBookService implements BookService {
     private BookRepository bookRepository;
 
     @Override
-    public void returnAllBooksByBorrower(String borrowerEmailAddress) {
+    public void returnAllBooksByBorrower(String borrowerEmailAddress, String isbn, String title) {
         List<Borrowing> borrowingsByUser = borrowingRepository
                 .findBorrowingsByBorrower(borrowerEmailAddress);
         for (Borrowing borrowing : borrowingsByUser) {
-            borrowingRepository.delete(borrowing);
+            String bookIsbn = borrowing.getBorrowerBook().getIsbn();
+            String bookTitle = borrowing.getBorrowerBook().getTitle();
+
+            if (bookIsbn == null && bookTitle == null) {
+                borrowingRepository.delete(borrowing);
+                continue;
+            }
+
+            if (bookIsbn != null && bookTitle != null) {
+                if (bookIsbn.equals(isbn) && bookTitle.equals(title)){
+                    borrowingRepository.delete(borrowing);
+                    return;
+                }
+            }
+
+            if (bookIsbn != null && bookIsbn.equals(isbn)) {
+                borrowingRepository.delete(borrowing);
+                return;
+            }
+            if (bookTitle != null && bookTitle.equals(title)) {
+                borrowingRepository.delete(borrowing);
+                return;
+            }
         }
     }
 
